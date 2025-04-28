@@ -44,6 +44,7 @@ langchain-community==0.3.23
 langchain-core==0.3.56
 langchain-experimental==0.3.4
 langchain-text-splitters==0.3.8
+langchain-voyageai==0.1.4
 langsmith==0.3.38
 lz4==4.4.4
 marshmallow==3.26.1
