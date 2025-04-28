@@ -33,7 +33,7 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
 
     _client: voyageai.Client = PrivateAttr()
     _aclient: voyageai.client_async.AsyncClient = PrivateAttr()
-    model: str = "voyage-multimodal-3"
+    model: str = "voyage-02"
     batch_size: int
 
     output_dimension: int = 1024 # MODIFIED, ALL MM embeddings are 1024-dimensional
@@ -67,7 +67,7 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
         """Validate that VoyageAI credentials exist in environment."""
         api_key_str = self.voyage_api_key.get_secret_value()
         self._client = voyageai.Client(api_key=api_key_str)
-        self._aclient = voyageai.client_async.AsyncClient(api_key=api_key_str)
+        self._aclient = voyageai.AsyncClient(api_key=api_key_str)
         return self
 
     def _get_batch_iterator(self, texts: List[str]) -> Iterable:
