@@ -33,10 +33,10 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
 
     _client: voyageai.Client = PrivateAttr()
     _aclient: voyageai.client_async.AsyncClient = PrivateAttr()
-    model = "voyage-multimodal-3"
+    model: str = "voyage-multimodal-3"
     batch_size: int
 
-    output_dimension: 1024 # MODIFIED, ALL MM embeddings are 1024-dimensional
+    output_dimension: int = 1024 # MODIFIED, ALL MM embeddings are 1024-dimensional
     show_progress_bar: bool = False
     truncation: bool = True
     voyage_api_key: SecretStr = Field(
@@ -92,8 +92,10 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
 
         _iter = self._get_batch_iterator(texts)
         for i in _iter:
-            r = self._client.embed(
-                texts[i : i + self.batch_size],
+            formatted_texts = [[text] for text in texts[i : i + self.batch_size]]
+
+            r = self._client.multimodal_embed(
+                texts=formatted_texts,
                 model=self.model,
                 input_type="document",
                 truncation=self.truncation,
@@ -104,7 +106,7 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
 
     def embed_query(self, text: str) -> List[float]:
         """Embed query text."""
-        r = self._client.embed(
+        r = self._client.multimodal_embed(
             [text],
             model=self.model,
             input_type="query",
@@ -118,8 +120,10 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
 
         _iter = self._get_batch_iterator(texts)
         for i in _iter:
-            r = await self._aclient.embed(
-                texts[i : i + self.batch_size],
+            formatted_texts = [[text] for text in texts[i : i + self.batch_size]]
+
+            r = await self._aclient.multimodal_embed(
+                texts=formatted_texts,
                 model=self.model,
                 input_type="document",
                 truncation=self.truncation,
@@ -130,7 +134,7 @@ class VoyageAIEmbeddingsMM(BaseModel, Embeddings):
         return embeddings
 
     async def aembed_query(self, text: str) -> List[float]:
-        r = await self._aclient.embed(
+        r = await self._aclient.multimodal_embed(
             [text],
             model=self.model,
             input_type="query",
