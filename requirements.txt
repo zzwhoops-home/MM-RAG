@@ -27,10 +27,13 @@ googleapis-common-protos==1.70.0
 greenlet==3.2.1
 grpcio==1.71.0
 h11==0.16.0
+h2==4.3.0
+hpack==4.1.0
 httpcore==1.0.9
 httpx==0.28.1
 httpx-sse==0.4.0
 huggingface-hub==0.30.2
+hyperframe==6.1.0
 idna==3.10
 ipykernel==6.29.5
 ipython==8.35.0
@@ -65,11 +68,12 @@ openai==1.76.0
 orjson==3.10.16
 ormsgpack==1.9.1
 packaging==24.2
+pandas==2.2.3
 parso==0.8.4
 pillow==11.2.1
-pinecone==6.0.2
 pinecone-plugin-interface==0.0.7
 platformdirs==4.3.7
+portalocker==3.2.0
 prompt_toolkit==3.0.51
 propcache==0.3.1
 protobuf==5.29.4
@@ -83,9 +87,11 @@ Pygments==2.19.1
 pymongo==4.12.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
+pytz==2025.2
 pywin32==310
 PyYAML==6.0.2
 pyzmq==26.4.0
+qdrant-client==1.15.1
 regex==2024.11.6
 requests==2.32.3
 requests-toolbelt==1.0.0
@@ -103,6 +109,7 @@ traitlets==5.14.3
 typing-inspect==0.9.0
 typing-inspection==0.4.0
 typing_extensions==4.13.2
+tzdata==2025.2
 urllib3==2.4.0
 voyageai==0.3.2
 wcwidth==0.2.13
