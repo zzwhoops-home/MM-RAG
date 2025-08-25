@@ -4,7 +4,7 @@ This repository will host the code (both Python files and Jupyter notebooks) tha
 
 ## Tech Stack
 - MongoDB
-- PineconeDB
-- voyage-multimodal-3 (embeddings)
-- OpenAI GPT-4o
+- QdrantDB
+- `voyage-multimodal-3` (embeddings)
+- OpenAI `GPT-4o/GPT-4.5`
 - Python
