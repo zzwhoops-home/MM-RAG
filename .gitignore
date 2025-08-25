@@ -175,3 +175,5 @@ cython_debug/
 
 # project specific
 embedding_docs/
+data/
+output/
