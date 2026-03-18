@@ -1,9 +1,19 @@
 # this requires poppler, check https://pypi.org/project/pdf2image/
+import os
+
 import pdf2image
 from tqdm import tqdm
 from pathlib import Path
 from typing import Any
 import uuid
+
+from docx2pdf import convert
+
+def docx_to_pdf(fp: Path, output: Path) -> Any:
+    try:
+        convert(str(fp), str(output))
+    except Exception as e:
+        print(f"Unable to convert files at location {fp}! Error: {e}")
 
 def pdf_to_img(fp: Path, output: Path, fmt: str = "png", threads: int = 1) -> Any:
     """Converts a PDF to an output folder of images
@@ -34,6 +44,7 @@ def pdf_to_img(fp: Path, output: Path, fmt: str = "png", threads: int = 1) -> An
         img_dir.mkdir(parents=True, exist_ok=False)
     except Exception as e:
         print(f"Hashing conflict, {img_dir} already exists in your output directory {output}")
+        return None
 
     try:
         pdf2image.convert_from_path(
@@ -46,6 +57,9 @@ def pdf_to_img(fp: Path, output: Path, fmt: str = "png", threads: int = 1) -> An
         )
     except Exception as e:
         print(f"Conversion failed. Error: {e}")
+        return None
+    
+    return uuid5
 
 # def pdf_to_img_bulk(fp)
 
